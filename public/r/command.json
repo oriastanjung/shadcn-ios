@@ -15,5 +15,14 @@
     "tailwind-merge",
     "lucide-react",
     "cmdk"
-  ]
+  ],
+  "css": {
+    "*": {
+      "scrollbar-width": "none",
+      "&::-webkit-scrollbar": {
+        "display": "none",
+        "opacity": "0"
+      }
+    }
+  }
 }

@@ -7,12 +7,23 @@ const CSS_PATH = join(import.meta.dirname, "../src/index.css")
 
 mkdirSync(OUT_DIR, { recursive: true })
 
+const commonCss = {
+  "*": {
+    "scrollbar-width": "none",
+    "&::-webkit-scrollbar": {
+      "display": "none",
+      "opacity": "0",
+    },
+  },
+}
+
 const files = readdirSync(UI_DIR).filter((f) => f.endsWith(".tsx"))
 const items: Array<{
   name: string
   type: string
   files: Array<{ path: string; content: string; type: string }>
   dependencies: string[]
+  css?: typeof commonCss
 }> = []
 
 for (const file of files) {
@@ -44,6 +55,7 @@ for (const file of files) {
       },
     ],
     dependencies: Array.from(new Set(deps)),
+    css: commonCss,
   }
 
   writeFileSync(join(OUT_DIR, `${name}.json`), JSON.stringify(registryItem, null, 2))
@@ -62,6 +74,7 @@ const themeItem = {
       type: "registry:theme",
     },
   ],
+  css: commonCss,
 }
 writeFileSync(join(OUT_DIR, "theme.json"), JSON.stringify(themeItem, null, 2))
 
@@ -73,6 +86,7 @@ const allItem = {
   registryDependencies: items.map((i) => i.name),
   files: [],
   dependencies: Array.from(new Set(items.flatMap((i) => i.dependencies))),
+  css: commonCss,
 }
 writeFileSync(join(OUT_DIR, "all.json"), JSON.stringify(allItem, null, 2))
 
@@ -85,4 +99,4 @@ const registryIndex = {
 }
 
 writeFileSync(join(OUT_DIR, "index.json"), JSON.stringify(registryIndex, null, 2))
-console.log(`Generated ${items.length + 2} registry items in ${OUT_DIR}`)
+console.log(`Generated ${items.length + 2} registry items with automatic scrollbar css in ${OUT_DIR}`)

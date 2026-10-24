@@ -13,5 +13,14 @@
     "class-variance-authority",
     "clsx",
     "tailwind-merge"
-  ]
+  ],
+  "css": {
+    "*": {
+      "scrollbar-width": "none",
+      "&::-webkit-scrollbar": {
+        "display": "none",
+        "opacity": "0"
+      }
+    }
+  }
 }

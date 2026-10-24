@@ -175,4 +175,4 @@ Design tokens and styling referenced from [Konsta UI](https://konstaui.com).
 
 ## License
 
-[MIT](LICENSE) © 2026 Orias Tanjung
+[MIT](LICENSE) © 2026 Oriastanjung
