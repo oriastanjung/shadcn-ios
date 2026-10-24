@@ -13,6 +13,12 @@ A high-fidelity iOS mobile component preset for shadcn/ui. Built with Radix UI, 
 
 [Documentation & Live Kitchen Sink](https://oriastanjung.github.io/shadcn-ios/)
 
+<br />
+
+<p align="center">
+  <img src="docs/previews/preview.png" alt="Shadcn-IOS Live Kitchen Sink Preview" width="100%" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" />
+</p>
+
 </div>
 
 ---
@@ -123,6 +129,25 @@ export default function MobileCard() {
 | **Navigation** | `breadcrumb`, `pagination`, `navigation-menu`, `sidebar` |
 | **Feedback** | `badge`, `progress`, `sonner`, `alert`, `skeleton`, `spinner`, `empty` |
 | **Pickers & Media** | `calendar`, `carousel`, `chart`, `avatar`, `attachment` |
+
+---
+
+## Typography & Customizing Fonts
+
+Shadcn-IOS is configured with **Poppins** as the default font family via `@fontsource/poppins`.
+
+If you prefer to use your own font (e.g. Inter, Geist, SF Pro, or Plus Jakarta Sans), simply change the font import and `--font-sans` token inside your `index.css` (or `globals.css` in Next.js):
+
+```css
+/* Replace the font import in your CSS */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/600.css";
+
+@theme inline {
+  /* Set your preferred font family */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+```
 
 ---
 
