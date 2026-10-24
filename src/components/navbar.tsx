@@ -42,12 +42,6 @@ export function Navbar({ isDark, onToggleTheme, activeTab = "docs", onTabChange 
             <a href="#docs" className="text-foreground transition-colors hover:text-primary">
               Documentation
             </a>
-            <a
-              href="#resources"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Resources
-            </a>
           </nav>
         </div>
 
