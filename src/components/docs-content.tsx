@@ -68,7 +68,7 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
           <p className="text-sm text-muted-foreground leading-relaxed">
             No repository cloning required. Install individual iOS components directly into your existing React, Next.js, or Vite project:
           </p>
-          <CodeBlock code="npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/button.json" />
+          <CodeBlock code="npx shadcn@latest add https://oriastanjung.github.io/shadcn-ios/r/button.json" />
         </section>
 
         {/* Section: Install All Components */}
@@ -77,7 +77,7 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
           <p className="text-sm text-muted-foreground leading-relaxed">
             Install all 60+ iOS components into your workspace at once with the <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">--all</code> flag:
           </p>
-          <CodeBlock code="npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/all.json --all" />
+          <CodeBlock code="npx shadcn@latest add https://oriastanjung.github.io/shadcn-ios/r/all.json --all" />
         </section>
 
         {/* Section: Preset Registry Setup */}
@@ -98,7 +98,7 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
     "cssVariables": true
   },
   "registries": {
-    "ios": "https://shadcn-ios.dev/r"
+    "ios": "https://oriastanjung.github.io/shadcn-ios/r"
   }
 }`}
           />
@@ -204,7 +204,7 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
     "cssVariables": true
   },
   "registries": {
-    "ios": "https://shadcn-ios.dev/r"
+    "ios": "https://oriastanjung.github.io/shadcn-ios/r"
   }
 }`}
           />
@@ -223,7 +223,7 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
           <p className="text-sm text-muted-foreground">
             Or directly via registry manifest URL without modifying <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">components.json</code>:
           </p>
-          <CodeBlock code="npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/all.json --all" />
+          <CodeBlock code="npx shadcn@latest add https://oriastanjung.github.io/shadcn-ios/r/all.json --all" />
         </section>
 
         {/* Pagination Footer */}
@@ -448,7 +448,7 @@ export default function SettingsView() {
 
         <section className="space-y-3">
           <h2 className="text-xl font-bold tracking-tight">CLI Preset Installation</h2>
-          <CodeBlock code={`npx shadcn@latest add https://shadcn-ios.dev/r/${comp.screenId}.json`} />
+          <CodeBlock code={`npx shadcn@latest add https://oriastanjung.github.io/shadcn-ios/r/${comp.screenId}.json`} />
           <p className="text-xs text-muted-foreground">
             Or with configured registry namespace: <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">npx shadcn add @ios/{comp.screenId}</code>
           </p>

@@ -11,7 +11,7 @@
 
 A high-fidelity iOS mobile component preset for shadcn/ui. Built with Radix UI, Base UI, Tailwind CSS v4, and Poppins font typography.
 
-[Documentation & Live Kitchen Sink](https://github.com/oriastanjung/shadcn-ios)
+[Documentation & Live Kitchen Sink](https://oriastanjung.github.io/shadcn-ios/)
 
 </div>
 
@@ -34,7 +34,7 @@ A high-fidelity iOS mobile component preset for shadcn/ui. Built with Radix UI, 
 Install the entire suite of 60+ iOS components with a single command:
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/all.json --all
+npx shadcn@latest add https://oriastanjung.github.io/shadcn-ios/r/all.json --all
 ```
 
 Or if you have the `@ios` registry configured in your `components.json`:
@@ -60,7 +60,7 @@ Add the custom registry to your project's `components.json`:
     "cssVariables": true
   },
   "registries": {
-    "ios": "https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r"
+    "ios": "https://oriastanjung.github.io/shadcn-ios/r"
   }
 }
 ```
@@ -82,9 +82,9 @@ npx shadcn@latest add @ios/button @ios/switch @ios/card @ios/dialog @ios/sheet
 You can also install individual components without configuring `components.json`:
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/button.json
-npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/switch.json
-npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/dialog.json
+npx shadcn@latest add https://oriastanjung.github.io/shadcn-ios/r/button.json
+npx shadcn@latest add https://oriastanjung.github.io/shadcn-ios/r/switch.json
+npx shadcn@latest add https://oriastanjung.github.io/shadcn-ios/r/dialog.json
 ```
 
 ---
