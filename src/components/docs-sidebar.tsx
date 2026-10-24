@@ -48,9 +48,8 @@ export function DocsSidebar({ currentSection, onSelect }: DocsSidebarProps) {
       items: [
         { id: "introduction", label: "Introduction" },
         { id: "kitchen-sink", label: "Kitchen Sink" },
-        { id: "installation", label: "Installation" },
+        { id: "installation", label: "Preset Installation" },
         { id: "usage", label: "Usage" },
-        { id: "shadcn-preset", label: "Shadcn UI Preset" },
       ],
     },
     {

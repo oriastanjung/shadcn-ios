@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Copy, Check, ChevronLeft, ChevronRight, ExternalLink, Terminal } from "lucide-react"
+import { Copy, Check, ChevronLeft, ChevronRight, Terminal } from "lucide-react"
 import type { NavItem } from "./docs-sidebar"
 import { Button } from "@/components/ui/button"
 import type { ScreenId } from "./mobile-sink"
@@ -58,75 +58,46 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">Kitchen Sink</h1>
           <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-            Interactive live preview of all Shadcn-IOS mobile components inside an iPhone simulator.
+            Interactive live preview of all Shadcn-IOS components. You can install any component shown here directly into your own project using the Shadcn CLI preset.
           </p>
         </div>
 
-        {/* Section: Source Code */}
-        <section className="space-y-2">
-          <h2 className="text-xl font-bold tracking-tight">Source Code</h2>
+        {/* Section: Preset Quick Install */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-bold tracking-tight">Quick Install via Shadcn CLI</h2>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            The React Kitchen Sink source code is available in the{" "}
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noreferrer"
-              className="text-primary font-medium hover:underline inline-flex items-center gap-0.5"
-            >
-              GitHub repository
-              <ExternalLink className="size-3" />
-            </a>
-            .
-          </p>
-        </section>
-
-        {/* Section: Running Locally */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-bold tracking-tight">Running Locally</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            To run the Shadcn-IOS React Kitchen Sink locally on your machine:
-          </p>
-
-          <div className="space-y-4 text-sm text-muted-foreground">
-            <div className="space-y-1">
-              <p>
-                1. Clone (or download) the{" "}
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-primary font-medium hover:underline"
-                >
-                  Shadcn-IOS GitHub repository
-                </a>
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <p>
-                2. Install required dependencies. Navigate into the repository directory and run:
-              </p>
-              <CodeBlock code="bun install" />
-            </div>
-
-            <div className="space-y-2">
-              <p>3. Launch the local dev server and open your browser:</p>
-              <CodeBlock code="bun run dev" />
-            </div>
-          </div>
-        </section>
-
-        {/* Section: Preset Shadcn UI */}
-        <section className="space-y-3 pt-4 border-t border-border">
-          <h2 className="text-xl font-bold tracking-tight">Install as Shadcn UI Preset</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Shadcn-IOS components are fully distributed as a custom shadcn registry. You can add components
-            directly to any React or Next.js project with a single CLI command:
+            No repository cloning required. Install individual iOS components directly into your existing React, Next.js, or Vite project:
           </p>
           <CodeBlock code="npx shadcn@latest add https://shadcn-ios.dev/r/button.json" />
-          <p className="text-xs text-muted-foreground">
-            Or configure the registry in your <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">components.json</code> to install components via <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">npx shadcn add @ios/switch</code>.
+        </section>
+
+        {/* Section: Preset Registry Setup */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-bold tracking-tight">Setup Preset in components.json</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Configure the preset registry in your <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">components.json</code> once:
           </p>
+
+          <CodeBlock
+            code={`{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "src/index.css",
+    "baseColor": "slate",
+    "cssVariables": true
+  },
+  "registries": {
+    "ios": "https://shadcn-ios.dev/r"
+  }
+}`}
+          />
+
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Then install any component using the <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">@ios</code> namespace:
+          </p>
+          <CodeBlock code="npx shadcn@latest add @ios/button @ios/switch @ios/card @ios/dialog" />
         </section>
 
         {/* Pagination Footer */}
@@ -157,22 +128,22 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">Introduction</h1>
           <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-            Shadcn-IOS bridges the gap between shadcn/ui's modular copy-paste philosophy and the refined, touch-first
-            elegance of iOS Cupertino design (referenced from Konsta UI design tokens).
+            Shadcn-IOS is a custom preset and design registry for shadcn/ui that brings touch-first iOS Cupertino design
+            tokens (referenced from Konsta UI) into modern web projects.
           </p>
         </div>
 
         <section className="space-y-3 text-sm text-muted-foreground leading-relaxed">
-          <h2 className="text-xl font-bold text-foreground">Why Shadcn-IOS?</h2>
+          <h2 className="text-xl font-bold text-foreground">Why Shadcn-IOS Preset?</h2>
           <p>
-            Standard web component libraries prioritize desktop dashboard interfaces. Shadcn-IOS is optimized
-            for mobile fidelity, web apps, and progressive web apps:
+            Instead of cloning another codebase, install iOS-optimized components directly into your own app:
           </p>
           <ul className="list-disc list-inside space-y-2 pl-2">
-            <li><strong className="text-foreground">Authentic iOS Feel</strong>: Pill action buttons, Cupertino rounded switches, centered alert dialogs, and slide-up action sheets.</li>
-            <li><strong className="text-foreground">Poppins Font Default</strong>: Premium typography scale paired with Apple SF Pro system fallbacks.</li>
+            <li><strong className="text-foreground">Official Shadcn Preset</strong>: 100% compatible with <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">npx shadcn add</code> CLI.</li>
+            <li><strong className="text-foreground">Authentic iOS Feel</strong>: Action pill buttons, Cupertino switches, inset card lists, and centered alerts.</li>
+            <li><strong className="text-foreground">Poppins Font</strong>: Pre-configured font tokens with native system fallbacks.</li>
             <li><strong className="text-foreground">Hairline Borders (0.5px)</strong>: Subtle borders that match native iOS app contrast.</li>
-            <li><strong className="text-foreground">Full Accessibility</strong>: Built on top of Radix UI and Base UI with keyboard navigation and screen-reader readiness.</li>
+            <li><strong className="text-foreground">Accessible</strong>: Built on Radix UI and Base UI with complete keyboard navigation and screen-reader support.</li>
           </ul>
         </section>
 
@@ -189,29 +160,29 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
     )
   }
 
-  // 3. INSTALLATION & PRESET
+  // 3. INSTALLATION & PRESET SETUP
   if (currentSection === "installation" || currentSection === "shadcn-preset") {
     return (
       <article className="max-w-2xl py-8 space-y-8 animate-in fade-in duration-200">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight">Shadcn UI Preset Setup</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight">Shadcn UI Preset Installation</h1>
           <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-            The easiest way to import Shadcn-IOS components into your Vite, Next.js, or Astro project.
+            Install and use components via the official shadcn CLI preset. No cloning required.
           </p>
         </div>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-bold tracking-tight">1. Quick Add via CLI</h2>
+          <h2 className="text-xl font-bold tracking-tight">Step 1: Initialize shadcn in Your Project</h2>
           <p className="text-sm text-muted-foreground">
-            Run the official <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">shadcn</code> CLI command targeting the component schema:
+            If you have not initialized shadcn yet, run:
           </p>
-          <CodeBlock code="npx shadcn@latest add https://raw.githubusercontent.com/shadcn-ios/react-shadcn-ios/master/public/r/button.json" />
+          <CodeBlock code="npx shadcn@latest init" />
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-bold tracking-tight">2. Registry Configuration in components.json</h2>
+          <h2 className="text-xl font-bold tracking-tight">Step 2: Add Preset Registry to components.json</h2>
           <p className="text-sm text-muted-foreground">
-            Add the custom registry URL into your <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">components.json</code>:
+            Open your project's <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">components.json</code> and register the preset:
           </p>
           <CodeBlock
             code={`{
@@ -224,15 +195,41 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
     "cssVariables": true
   },
   "registries": {
-    "ios": "https://raw.githubusercontent.com/shadcn-ios/react-shadcn-ios/master/public/r"
+    "ios": "https://shadcn-ios.dev/r"
   }
 }`}
           />
-          <p className="text-sm text-muted-foreground">
-            Now you can add any iOS component using the namespace:
-          </p>
-          <CodeBlock code="npx shadcn@latest add @ios/switch @ios/button @ios/dialog" />
         </section>
+
+        <section className="space-y-3">
+          <h2 className="text-xl font-bold tracking-tight">Step 3: Add Components</h2>
+          <p className="text-sm text-muted-foreground">
+            Install any component directly from the preset registry:
+          </p>
+          <CodeBlock code="npx shadcn@latest add @ios/button @ios/switch @ios/card @ios/dialog @ios/sheet" />
+          <p className="text-sm text-muted-foreground">
+            Or install directly via URL without modifying <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">components.json</code>:
+          </p>
+          <CodeBlock code="npx shadcn@latest add https://shadcn-ios.dev/r/button.json" />
+        </section>
+
+        {/* Pagination Footer */}
+        <div className="pt-8 border-t border-border flex items-center justify-between">
+          <button
+            onClick={() => onNavigate("kitchen-sink")}
+            className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors group"
+          >
+            <ChevronLeft className="size-4 group-hover:-translate-x-0.5 transition-transform" />
+            <span>Kitchen Sink</span>
+          </button>
+          <button
+            onClick={() => onNavigate("usage")}
+            className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors group"
+          >
+            <span>Usage</span>
+            <ChevronRight className="size-4 group-hover:translate-x-0.5 transition-transform" />
+          </button>
+        </div>
       </article>
     )
   }
@@ -244,7 +241,7 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">Usage</h1>
           <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-            Import and use components just like any standard React component.
+            Import installed preset components into your React application.
           </p>
         </div>
 
@@ -255,7 +252,7 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
 import { Switch } from "@/components/ui/switch"
 import { Card, CardContent } from "@/components/ui/card"
 
-export default function MobileSettings() {
+export default function SettingsView() {
   const [airplaneMode, setAirplaneMode] = React.useState(false)
 
   return (
@@ -268,6 +265,24 @@ export default function MobileSettings() {
   )`}
           />
         </section>
+
+        {/* Pagination Footer */}
+        <div className="pt-8 border-t border-border flex items-center justify-between">
+          <button
+            onClick={() => onNavigate("installation")}
+            className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors group"
+          >
+            <ChevronLeft className="size-4 group-hover:-translate-x-0.5 transition-transform" />
+            <span>Installation</span>
+          </button>
+          <button
+            onClick={() => onNavigate("colors")}
+            className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors group"
+          >
+            <span>Colors</span>
+            <ChevronRight className="size-4 group-hover:translate-x-0.5 transition-transform" />
+          </button>
+        </div>
       </article>
     )
   }
@@ -419,8 +434,11 @@ export default function MobileSettings() {
         </div>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-bold tracking-tight">CLI Installation</h2>
+          <h2 className="text-xl font-bold tracking-tight">CLI Preset Installation</h2>
           <CodeBlock code={`npx shadcn@latest add https://shadcn-ios.dev/r/${comp.screenId}.json`} />
+          <p className="text-xs text-muted-foreground">
+            Or with configured registry namespace: <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">npx shadcn add @ios/{comp.screenId}</code>
+          </p>
         </section>
 
         <section className="space-y-3">
