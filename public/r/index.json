@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "shadcn-ios",
   "description": "Konsta UI iOS style and tokens preset for shadcn.",
-  "homepage": "https://github.com/devwillow/shadcn-ios",
+  "homepage": "https://github.com/oriastanjung/shadcn-ios",
   "items": [
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

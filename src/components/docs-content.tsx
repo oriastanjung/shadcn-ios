@@ -68,7 +68,16 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
           <p className="text-sm text-muted-foreground leading-relaxed">
             No repository cloning required. Install individual iOS components directly into your existing React, Next.js, or Vite project:
           </p>
-          <CodeBlock code="npx shadcn@latest add https://shadcn-ios.dev/r/button.json" />
+          <CodeBlock code="npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/button.json" />
+        </section>
+
+        {/* Section: Install All Components */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-bold tracking-tight">Install All Components (--all)</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Install all 60+ iOS components into your workspace at once with the <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">--all</code> flag:
+          </p>
+          <CodeBlock code="npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/all.json --all" />
         </section>
 
         {/* Section: Preset Registry Setup */}
@@ -204,13 +213,17 @@ export function DocsContent({ currentSection, onNavigate, onOpenMobilePreview }:
         <section className="space-y-3">
           <h2 className="text-xl font-bold tracking-tight">Step 3: Add Components</h2>
           <p className="text-sm text-muted-foreground">
-            Install any component directly from the preset registry:
+            Install individual components from the preset:
           </p>
           <CodeBlock code="npx shadcn@latest add @ios/button @ios/switch @ios/card @ios/dialog @ios/sheet" />
           <p className="text-sm text-muted-foreground">
-            Or install directly via URL without modifying <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">components.json</code>:
+            Or install <strong>all 60+ components</strong> at once using the <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">--all</code> flag:
           </p>
-          <CodeBlock code="npx shadcn@latest add https://shadcn-ios.dev/r/button.json" />
+          <CodeBlock code="npx shadcn@latest add @ios/all --all" />
+          <p className="text-sm text-muted-foreground">
+            Or directly via registry manifest URL without modifying <code className="bg-muted px-1.5 py-0.5 rounded text-foreground font-mono">components.json</code>:
+          </p>
+          <CodeBlock code="npx shadcn@latest add https://raw.githubusercontent.com/oriastanjung/shadcn-ios/master/public/r/all.json --all" />
         </section>
 
         {/* Pagination Footer */}

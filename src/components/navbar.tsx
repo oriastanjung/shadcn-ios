@@ -80,7 +80,7 @@ export function Navbar({ isDark, onToggleTheme, activeTab = "docs", onTabChange 
           </div>
 
           <a
-            href="https://github.com"
+            href="https://github.com/oriastanjung/shadcn-ios"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub Repository"

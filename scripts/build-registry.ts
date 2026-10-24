@@ -65,13 +65,24 @@ const themeItem = {
 }
 writeFileSync(join(OUT_DIR, "theme.json"), JSON.stringify(themeItem, null, 2))
 
+const allItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "all",
+  type: "registry:ui",
+  description: "Install all Shadcn-IOS components at once.",
+  registryDependencies: items.map((i) => i.name),
+  files: [],
+  dependencies: Array.from(new Set(items.flatMap((i) => i.dependencies))),
+}
+writeFileSync(join(OUT_DIR, "all.json"), JSON.stringify(allItem, null, 2))
+
 const registryIndex = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "shadcn-ios",
   description: "Konsta UI iOS style and tokens preset for shadcn.",
-  homepage: "https://github.com/devwillow/shadcn-ios",
+  homepage: "https://github.com/oriastanjung/shadcn-ios",
   items,
 }
 
 writeFileSync(join(OUT_DIR, "index.json"), JSON.stringify(registryIndex, null, 2))
-console.log(`Generated ${items.length} registry items in ${OUT_DIR}`)
+console.log(`Generated ${items.length + 2} registry items in ${OUT_DIR}`)
