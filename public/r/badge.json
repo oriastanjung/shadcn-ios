@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "components/ui/badge.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"cn\"\nimport { Slot } from \"radix-ui\"\n\nconst badgeVariants = cva(\n  \"group/badge inline-flex h-6 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-ring/40 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground [a]:hover:opacity-90\",\n        secondary:\n          \"bg-secondary text-secondary-foreground [a]:hover:opacity-90\",\n        destructive:\n          \"bg-destructive/15 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/25 dark:focus-visible:ring-destructive/40 [a]:hover:opacity-90\",\n        success: \"bg-success/15 text-success dark:bg-success/25\",\n        warning: \"bg-warning/15 text-warning dark:bg-warning/25\",\n        navy: \"bg-navy text-navy-foreground\",\n        outline:\n          \"border-border bg-card text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground\",\n        ghost:\n          \"hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nfunction Badge({\n  className,\n  variant = \"default\",\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"span\"> &\n  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot.Root : \"span\"\n\n  return (\n    <Comp\n      data-slot=\"badge\"\n      data-variant={variant}\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Badge, badgeVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge",
+    "radix-ui"
+  ]
+}

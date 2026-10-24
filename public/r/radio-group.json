@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "components/ui/radio-group.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"cn\"\nimport { RadioGroup as RadioGroupPrimitive } from \"radix-ui\"\n\nfunction RadioGroup({\n  className,\n  ...props\n}: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {\n  return (\n    <RadioGroupPrimitive.Root\n      data-slot=\"radio-group\"\n      className={cn(\"grid w-full gap-3\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction RadioGroupItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"group/radio-group-item peer relative flex aspect-square size-5.5 shrink-0 cursor-pointer rounded-full border border-black/30 bg-card outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/30 disabled:cursor-not-allowed disabled:opacity-40 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20 dark:border-white/30 data-checked:border-primary\",\n        className\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator\n        data-slot=\"radio-group-indicator\"\n        className=\"flex size-full items-center justify-center\"\n      >\n        <span className=\"size-2.5 rounded-full bg-primary\" />\n      </RadioGroupPrimitive.Indicator>\n    </RadioGroupPrimitive.Item>\n  )\n}\n\nexport { RadioGroup, RadioGroupItem }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge",
+    "radix-ui"
+  ]
+}

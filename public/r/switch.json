@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "components/ui/switch.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"cn\"\nimport { Switch as SwitchPrimitive } from \"radix-ui\"\n\nfunction Switch({\n  className,\n  size = \"default\",\n  ...props\n}: React.ComponentProps<typeof SwitchPrimitive.Root> & {\n  size?: \"sm\" | \"default\"\n}) {\n  return (\n    <SwitchPrimitive.Root\n      data-slot=\"switch\"\n      data-size={size}\n      className={cn(\n        \"peer group/switch relative inline-flex shrink-0 cursor-pointer items-center rounded-full p-0.5 border border-transparent transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/30 aria-invalid:border-destructive data-[size=default]:h-7 data-[size=default]:w-12 data-[size=sm]:h-5.5 data-[size=sm]:w-9.5 data-checked:bg-primary data-unchecked:bg-black/15 dark:data-unchecked:bg-white/20 data-disabled:cursor-not-allowed data-disabled:opacity-40\",\n        className\n      )}\n      {...props}\n    >\n      <SwitchPrimitive.Thumb\n        data-slot=\"switch-thumb\"\n        className=\"pointer-events-none block rounded-full bg-white shadow-ios-thumb transition-transform duration-200 group-data-[size=default]/switch:size-6 group-data-[size=sm]/switch:size-4.5 data-checked:group-data-[size=default]/switch:translate-x-5 data-checked:group-data-[size=sm]/switch:translate-x-4 data-unchecked:translate-x-0\"\n      />\n    </SwitchPrimitive.Root>\n  )\n}\n\nexport { Switch }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge",
+    "radix-ui"
+  ]
+}

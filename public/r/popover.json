@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "components/ui/popover.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"cn\"\nimport { Popover as PopoverPrimitive } from \"radix-ui\"\n\nfunction Popover({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Root>) {\n  return <PopoverPrimitive.Root data-slot=\"popover\" {...props} />\n}\n\nfunction PopoverTrigger({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />\n}\n\nfunction PopoverContent({\n  className,\n  align = \"center\",\n  sideOffset = 4,\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Content>) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Content\n        data-slot=\"popover-content\"\n        align={align}\n        sideOffset={sideOffset}\n        className={cn(\n          \"z-50 flex w-72 origin-(--radix-popover-content-transform-origin) flex-col gap-3 rounded-2xl bg-popover/95 p-4 text-sm text-popover-foreground shadow-float border border-border outline-hidden duration-150 backdrop-blur-xl data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95\",\n          className\n        )}\n        {...props}\n      />\n    </PopoverPrimitive.Portal>\n  )\n}\n\nfunction PopoverAnchor({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {\n  return <PopoverPrimitive.Anchor data-slot=\"popover-anchor\" {...props} />\n}\n\nfunction PopoverHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"popover-header\"\n      className={cn(\"flex flex-col gap-1 text-sm font-semibold\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PopoverTitle({ className, ...props }: React.ComponentProps<\"h2\">) {\n  return (\n    <h2\n      data-slot=\"popover-title\"\n      className={cn(\"font-heading text-base font-semibold leading-none\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PopoverDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"p\">) {\n  return (\n    <p\n      data-slot=\"popover-description\"\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PopoverClose({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Close>) {\n  return <PopoverPrimitive.Close data-slot=\"popover-close\" {...props} />\n}\n\nexport {\n  Popover,\n  PopoverTrigger,\n  PopoverContent,\n  PopoverAnchor,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverDescription,\n  PopoverClose,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge",
+    "radix-ui"
+  ]
+}

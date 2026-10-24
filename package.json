@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "registry:build": "bun scripts/build-registry.ts",
     "lint": "oxlint",
     "preview": "vite preview"
   },

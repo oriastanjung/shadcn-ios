@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "components/ui/checkbox.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"cn\"\nimport { Checkbox as CheckboxPrimitive } from \"radix-ui\"\nimport { CheckIcon } from \"lucide-react\"\n\nfunction Checkbox({\n  className,\n  ...props\n}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"peer relative flex size-5.5 shrink-0 cursor-pointer items-center justify-center rounded-full border border-black/30 bg-card transition-all outline-none focus-visible:ring-2 focus-visible:ring-primary/30 disabled:cursor-not-allowed disabled:opacity-40 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20 dark:border-white/30 data-checked:border-primary data-checked:bg-primary data-checked:text-white dark:data-checked:bg-primary\",\n        className\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        data-slot=\"checkbox-indicator\"\n        className=\"grid place-content-center text-current transition-none [&>svg]:size-3.5 [&>svg]:stroke-[2.5]\"\n      >\n        <CheckIcon />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  )\n}\n\nexport { Checkbox }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge",
+    "radix-ui",
+    "lucide-react"
+  ]
+}

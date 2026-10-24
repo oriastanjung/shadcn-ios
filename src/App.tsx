@@ -1,178 +1,116 @@
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Badge } from "@/components/ui/badge"
-import { Slider } from "@/components/ui/slider"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Moon, Sun } from "lucide-react"
+import * as React from "react"
+import { Navbar } from "./components/navbar"
+import { DocsSidebar, type NavItem } from "./components/docs-sidebar"
+import { DocsContent } from "./components/docs-content"
+import { PhoneFrame } from "./components/phone-frame"
+import { MobileSink, type ScreenId } from "./components/mobile-sink"
 
 export default function App() {
-  const [isDark, setIsDark] = useState(false)
-  const [toggleChecked, setToggleChecked] = useState(true)
-  const [sliderVal, setSliderVal] = useState([65])
-  const [radioVal, setRadioVal] = useState("option-1")
+  const [isDark, setIsDark] = React.useState(false)
+  const [phoneDark, setPhoneDark] = React.useState(false)
+  const [accentColor, setAccentColor] = React.useState("#007aff")
+  const [currentSection, setCurrentSection] = React.useState<NavItem>("kitchen-sink")
+  const [phoneScreen, setPhoneScreen] = React.useState<ScreenId>("home")
+  const [activeMobileTab, setActiveMobileTab] = React.useState<"docs" | "preview">("docs")
 
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle("dark")
+  const toggleGlobalTheme = () => {
+    const nextDark = !isDark
+    setIsDark(nextDark)
+    setPhoneDark(nextDark)
+    document.documentElement.classList.toggle("dark", nextDark)
+  }
+
+  const togglePhoneTheme = () => {
+    setPhoneDark(!phoneDark)
+  }
+
+  const handleSidebarSelect = (item: NavItem) => {
+    setCurrentSection(item)
+    const componentScreens: ScreenId[] = [
+      "action-sheet",
+      "badge",
+      "breadcrumbs",
+      "button",
+      "card",
+      "checkbox",
+      "dialog",
+      "input",
+      "popover",
+      "progress",
+      "radio",
+      "select",
+      "sheet",
+      "switch",
+      "tabs",
+      "toast",
+    ]
+    if (componentScreens.includes(item as ScreenId)) {
+      setPhoneScreen(item as ScreenId)
+    } else if (item === "kitchen-sink") {
+      setPhoneScreen("home")
+    }
+  }
+
+  const handleOpenMobilePreview = (screenId: ScreenId) => {
+    setPhoneScreen(screenId)
+    setActiveMobileTab("preview")
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors p-4 sm:p-8">
-      <div className="mx-auto max-w-4xl space-y-8">
-        <header className="flex items-center justify-between pb-6 border-b border-border">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Shadcn-IOS</h1>
-            <p className="text-sm text-muted-foreground">
-              Konsta UI iOS style and design tokens built for shadcn components.
-            </p>
+    <div className="min-h-screen bg-background text-foreground transition-colors selection:bg-primary/20 selection:text-primary">
+      {/* Top Navigation Bar */}
+      <Navbar
+        isDark={isDark}
+        onToggleTheme={toggleGlobalTheme}
+        activeTab={activeMobileTab}
+        onTabChange={setActiveMobileTab}
+      />
+
+      {/* Main 3-Column / Responsive Layout */}
+      <main className="mx-auto max-w-7xl px-4 sm:px-8">
+        <div className="flex gap-8 lg:gap-12 items-start justify-between min-h-[calc(100vh-4rem)]">
+          {/* Left Sidebar (Desktop / Tablet) */}
+          <div className="hidden lg:block">
+            <DocsSidebar currentSection={currentSection} onSelect={handleSidebarSelect} />
           </div>
-          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-            {isDark ? <Sun className="size-5" /> : <Moon className="size-5" />}
-          </Button>
-        </header>
 
-        <Tabs defaultValue="components" className="w-full">
-          <TabsList>
-            <TabsTrigger value="components">Components</TabsTrigger>
-            <TabsTrigger value="forms">Form Controls</TabsTrigger>
-            <TabsTrigger value="dialogs">Dialogs</TabsTrigger>
-          </TabsList>
+          {/* Middle Docs Content */}
+          <div
+            className={`flex-1 min-w-0 ${
+              activeMobileTab === "docs" ? "block" : "hidden lg:block"
+            }`}
+          >
+            {/* Mobile Sidebar Selector on small screens */}
+            <div className="lg:hidden pt-4 pb-2 border-b border-border">
+              <DocsSidebar currentSection={currentSection} onSelect={handleSidebarSelect} />
+            </div>
 
-          <TabsContent value="components" className="space-y-6 pt-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Buttons</CardTitle>
-                <CardDescription>iOS action pills with smooth tap states</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-3">
-                <Button variant="default">Default</Button>
-                <Button variant="secondary">Secondary</Button>
-                <Button variant="outline">Outline</Button>
-                <Button variant="ghost">Ghost</Button>
-                <Button variant="destructive">Destructive</Button>
-              </CardContent>
-            </Card>
+            <DocsContent
+              currentSection={currentSection}
+              onNavigate={handleSidebarSelect}
+              onOpenMobilePreview={handleOpenMobilePreview}
+            />
+          </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Badges</CardTitle>
-                <CardDescription>Rounded capsule badges</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-3">
-                <Badge variant="default">Primary</Badge>
-                <Badge variant="secondary">Secondary</Badge>
-                <Badge variant="success">Success</Badge>
-                <Badge variant="warning">Warning</Badge>
-                <Badge variant="destructive">Destructive</Badge>
-                <Badge variant="outline">Outline</Badge>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Progress & Sliders</CardTitle>
-                <CardDescription>Smooth range and track bars</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <div className="mb-2 text-sm font-medium">Progress Bar</div>
-                  <Progress value={65} />
-                </div>
-                <div>
-                  <div className="mb-2 text-sm font-medium">Range Slider ({sliderVal[0]}%)</div>
-                  <Slider value={sliderVal} onValueChange={setSliderVal} max={100} step={1} />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="forms" className="space-y-6 pt-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Inputs & Controls</CardTitle>
-                <CardDescription>Cupertino-styled switches, radios, and inputs</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-5">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Text Field</label>
-                  <Input placeholder="Enter your text here..." />
-                </div>
-
-                <div className="flex items-center justify-between py-2 border-b border-border/60">
-                  <div className="space-y-0.5">
-                    <div className="text-sm font-medium">Notification Toggle</div>
-                    <div className="text-xs text-muted-foreground">Receive push notifications</div>
-                  </div>
-                  <Switch checked={toggleChecked} onCheckedChange={setToggleChecked} />
-                </div>
-
-                <div className="flex items-center gap-3 py-2 border-b border-border/60">
-                  <Checkbox id="terms" defaultChecked />
-                  <label htmlFor="terms" className="text-sm font-medium cursor-pointer">
-                    Circular iOS Checkbox
-                  </label>
-                </div>
-
-                <div className="py-2">
-                  <div className="mb-3 text-sm font-medium">Radio Group</div>
-                  <RadioGroup value={radioVal} onValueChange={setRadioVal} className="gap-3">
-                    <div className="flex items-center gap-3">
-                      <RadioGroupItem value="option-1" id="r1" />
-                      <label htmlFor="r1" className="text-sm font-medium cursor-pointer">
-                        First Selection
-                      </label>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <RadioGroupItem value="option-2" id="r2" />
-                      <label htmlFor="r2" className="text-sm font-medium cursor-pointer">
-                        Second Selection
-                      </label>
-                    </div>
-                  </RadioGroup>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="dialogs" className="space-y-6 pt-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Modal Sheet & Dialog</CardTitle>
-                <CardDescription>Backdrop blur and rounded-3xl sheets</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>Open Dialog</Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Confirm Action</DialogTitle>
-                      <DialogDescription>
-                        This is an iOS-style alert dialog with glass backdrop and smooth corner curves.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <DialogFooter>
-                      <Button variant="default">Done</Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-
-        <footer className="pt-8 text-center text-xs text-muted-foreground">
-          Shadcn-IOS · Konsta UI Theme Tokens &amp; Tailwind CSS
-        </footer>
-      </div>
+          {/* Right Phone Frame Preview (Sticky on desktop, toggleable on mobile) */}
+          <div
+            className={`py-8 xl:py-10 shrink-0 sticky top-16 self-start ${
+              activeMobileTab === "preview" ? "w-full flex justify-center lg:w-auto" : "hidden xl:block"
+            }`}
+          >
+            <PhoneFrame isDark={phoneDark}>
+              <MobileSink
+                activeScreen={phoneScreen}
+                onScreenChange={setPhoneScreen}
+                isDark={phoneDark}
+                onToggleDark={togglePhoneTheme}
+                accentColor={accentColor}
+                onChangeAccent={setAccentColor}
+              />
+            </PhoneFrame>
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
