@@ -33,6 +33,22 @@ A high-fidelity iOS mobile component preset for shadcn/ui. Built with Radix UI, 
 
 ---
 
+## Sample Mobile Applications
+
+Tested and verified in production Next.js 16 and Vite React apps:
+
+| 1. iOS Reminders (Next.js) | 2. Netflix Mobile (Vite React) |
+|:---:|:---:|
+| <img src="docs/previews/sample-todo.png" width="320" alt="iOS Reminders Todo App" /> | <img src="docs/previews/sample-netflix.png" width="320" alt="Netflix Mobile App" /> |
+| *Components: Tabs, Input, Checkbox, Badge, Inset Card* | *Components: Pill Buttons, Badges, Hero Banner, Carousels* |
+
+| 3. Apple Store E-Commerce | 4. Apple Cash E-Wallet |
+|:---:|:---:|
+| <img src="docs/previews/sample-ecommerce.png" width="320" alt="Apple Store E-Commerce App" /> | <img src="docs/previews/sample-ewallet.png" width="320" alt="Apple Cash E-Wallet App" /> |
+| *Components: Search Bar, Category Chips, Product Grid, Price Badges* | *Components: Titanium Card, Quick Action Pills, Grouped Activity List* |
+
+---
+
 ## Quick Start (shadcn Preset)
 
 ### Option 1: Install All Components (`--all`)
